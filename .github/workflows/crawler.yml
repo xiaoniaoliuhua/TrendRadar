@@ -79,5 +79,6 @@ jobs:
         run: |
           git config --global user.name 'GitHub Actions'
           git config --global user.email 'actions@github.com'
-          git add -A
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto update by GitHub Actions at $(TZ=Asia/Shanghai date)" && git push)
+          git add output/                       # 关键：把去重记录也加进去
+          git diff --quiet && git diff --staged --quiet || \
+          (git commit -m "Auto update at $(TZ=Asia/Shanghai date)" && git push)
