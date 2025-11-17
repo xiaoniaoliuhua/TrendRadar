@@ -73,6 +73,7 @@ jobs:
           export MAIL_TO="$EMAIL_TO"
           export MAIL_SMTP_SERVER="$EMAIL_SMTP_SERVER"
           export MAIL_SMTP_PORT="$EMAIL_SMTP_PORT"
+          ONLY_SEND_INCREMENTAL: "true"   # 自定义开关，可选
           python main.py
 
       - name: Commit and push if changes
