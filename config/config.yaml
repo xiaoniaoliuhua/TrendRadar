@@ -44,7 +44,6 @@ notification:
     smtp_server: ${{ secrets.EMAIL_SMTP_SERVER }}
     smtp_port: ${{ secrets.EMAIL_SMTP_PORT }}
 
-
   # 🕐 推送时间窗口控制（可选功能）
   # 用途：限制推送的时间范围，避免非工作时间打扰
   # 适用场景：
