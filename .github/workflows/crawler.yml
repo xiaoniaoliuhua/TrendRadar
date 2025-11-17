@@ -51,7 +51,7 @@ jobs:
       - name: Run crawler
         env:
           EMAIL_FROM:          ${{ secrets.EMAIL_FROM }}
-          EMAIL_PASSWORD:      ${{ secrets.MAIL_PASSWORD }}
+          EMAIL_PASSWORD:      ${{ secrets.EMAIL_PASSWORD }}
           EMAIL_TO:            ${{ secrets.EMAIL_TO }}
           EMAIL_SMTP_SERVER:   ${{ secrets.EMAIL_SMTP_SERVER }}
           EMAIL_SMTP_PORT:     ${{ secrets.EMAIL_SMTP_PORT }}
@@ -73,7 +73,7 @@ jobs:
           export MAIL_SMTP_SERVER="$EMAIL_SMTP_SERVER"
           export MAIL_SMTP_PORT="$EMAIL_SMTP_PORT"
           python main.py
-
+          
       - name: Commit and push if changes
         run: |
           git config --global user.name 'GitHub Actions'
