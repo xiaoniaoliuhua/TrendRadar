@@ -50,13 +50,12 @@ jobs:
 
       - name: Run crawler
         env:
-          # ↓↓↓ 以下 5 行保证和 workflow 里名字一致
           EMAIL_FROM:          ${{ secrets.EMAIL_FROM }}
-          EMAIL_PASSWORD:      ${{ secrets.EMAIL_PASSWORD }}
+          EMAIL_PASSWORD:      ${{ secrets.MAIL_PASSWORD }}
           EMAIL_TO:            ${{ secrets.EMAIL_TO }}
           EMAIL_SMTP_SERVER:   ${{ secrets.EMAIL_SMTP_SERVER }}
           EMAIL_SMTP_PORT:     ${{ secrets.EMAIL_SMTP_PORT }}
-          # 其余变量保持你原来那一长串不动
+          # 其余变量保持你原来那一长串不变
           FEISHU_WEBHOOK_URL:  ${{ secrets.FEISHU_WEBHOOK_URL }}
           TELEGRAM_BOT_TOKEN:  ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID:    ${{ secrets.TELEGRAM_CHAT_ID }}
@@ -67,13 +66,12 @@ jobs:
           NTFY_TOKEN:          ${{ secrets.NTFY_TOKEN }}
           GITHUB_ACTIONS:      true
         run: |
-          # 把环境变量显式灌给 Python，确保能被 main.py 识别
+          # 把变量导出成脚本认识的名称（避免空格/冒号歧义）
           export MAIL_FROM="$EMAIL_FROM"
           export MAIL_PASSWORD="$EMAIL_PASSWORD"
           export MAIL_TO="$EMAIL_TO"
           export MAIL_SMTP_SERVER="$EMAIL_SMTP_SERVER"
           export MAIL_SMTP_PORT="$EMAIL_SMTP_PORT"
-          ONLY_SEND_INCREMENTAL: "true"   # 自定义开关，可选
           python main.py
 
       - name: Commit and push if changes
